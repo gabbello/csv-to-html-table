@@ -21,15 +21,16 @@
             <div class="col">
                 <h1>CSV to HTML Table</h1>
 
-                <p>Display any CSV file as a searchable, filterable, pretty HTML table. Done in 100% JavaScript. <a
-                        href="https://github.com/derekeder/csv-to-html-table">Code
-                        on GitHub</a>.</p>
+                <p>Display any CSV file as a searchable, filterable, pretty HTML table. Done in 100% JavaScript.</p>
 
-                <p> Here's a table of Health Clinics from the <a href="https://data.cityofchicago.org/browse?q=health%20clinic&sortBy=relevance&utf8=%E2%9C%93">City
-                        of Chicago Data Portal</a>.
-                </p>
+                <p>To use, upload a CSV file using the button below. The table will be generated automatically.</p>
+                <p>Note: This is a demo page. The CSV file will not be saved or sent anywhere.</p>             
 
                 <div id="table-container"></div>
+                <div class="my-3">
+                    <label for="csvFileInput">Upload CSV file:</label>
+                    <input type="file" id="csvFileInput" accept=".csv" class="form-control-file">
+                </div>
             </div>
         </main>
         <footer class="row">
@@ -55,21 +56,37 @@
             else return "";
         }
 
-        CsvToHtmlTable.init({
-            csv_path: "data/Health Clinics in Chicago.csv",
-            element: "table-container",
-            allow_download: true,
-            csv_options: {
-                separator: ",",
-                delimiter: '"'
-            },
-            datatables_options: {
-                paging: false
-            },
-            custom_formatting: [
-                [4, format_link]
-            ]
+        // Function to initialize table from CSV text
+        function initTableFromCSV(csvText) {
+            CsvToHtmlTable.init({
+                csv_text: csvText,
+                element: "table-container",
+                allow_download: true,
+                csv_options: {
+                    separator: ",",
+                    delimiter: '"'
+                },
+                datatables_options: {
+                    paging: false
+                },
+                custom_formatting: [
+                    [4, format_link]
+                ]
+            });
+        }
+
+        // Handle file upload
+        document.getElementById('csvFileInput').addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                initTableFromCSV(event.target.result);
+            };
+            reader.readAsText(file);
         });
+
+
     </script>
 </body>
 
