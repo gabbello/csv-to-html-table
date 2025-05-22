@@ -2,7 +2,7 @@
 
 Display any CSV file as a searchable, filterable, pretty [HTML table](https://www.scaler.com/topics/html/tables-in-html/). Done in 100% JavaScript.
 
-Check out the working demo: https://csv-to-html-table.netlify.app/
+Check out the working demo that allows uploading your own csv: [https://csv-to-html-table.netlify.app/](https://gabbello.github.io/csv-to-html-table/)
 
 ![Screen Shot 2021-03-26 at 4 53 39 PM](https://user-images.githubusercontent.com/919583/112696463-d7ddd000-8e53-11eb-8f0e-084794450943.png)
 
